@@ -1,0 +1,161 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/assets/fonts/SpaceGrotesk.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 300 700;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/assets/fonts/PlusJakartaSans.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 300 700;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 300 700;
+}
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+    /* Premium Gulf SaaS light mode */
+    --background: 1.0 0 0;
+    --foreground: 0.16 0.01 261;
+    --card: 0.98 0 0;
+    --card-foreground: 0.16 0.01 261;
+    --popover: 0.99 0 0;
+    --popover-foreground: 0.16 0.01 261;
+    --primary: 0.68 0.14 71;
+    --primary-foreground: 0.99 0 0;
+    --secondary: 0.53 0.17 254;
+    --secondary-foreground: 0.99 0 0;
+    --muted: 0.94 0.01 261;
+    --muted-foreground: 0.5 0.02 261;
+    --accent: 0.68 0.14 71;
+    --accent-foreground: 0.99 0 0;
+    --destructive: 0.62 0.22 25;
+    --destructive-foreground: 0.99 0 0;
+    --border: 0.92 0.01 261;
+    --input: 0.96 0.01 261;
+    --ring: 0.53 0.17 254;
+    --chart-1: 0.68 0.14 71;
+    --chart-2: 0.53 0.17 254;
+    --chart-3: 0.75 0.12 160;
+    --chart-4: 0.6 0.15 35;
+    --chart-5: 0.58 0.16 290;
+    --sidebar: 0.96 0.01 261;
+    --sidebar-foreground: 0.16 0.01 261;
+    --sidebar-primary: 0.68 0.14 71;
+    --sidebar-primary-foreground: 0.99 0 0;
+    --sidebar-accent: 0.53 0.17 254;
+    --sidebar-accent-foreground: 0.99 0 0;
+    --sidebar-border: 0.92 0.01 261;
+    --sidebar-ring: 0.53 0.17 254;
+    --font-display: "Space Grotesk", sans-serif;
+    --font-body: "Plus Jakarta Sans", sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    font-weight: 600;
+  }
+
+  code,
+  pre {
+    font-family: var(--font-mono);
+  }
+
+  /* High contrast mode - Premium Gulf SaaS */
+  .high-contrast {
+    --background: 0.95 0 0;
+    --foreground: 0.1 0 0;
+    --border: 0.3 0.02 261;
+    --muted-foreground: 0.4 0.01 261;
+    --primary: 0.68 0.14 71;
+  }
+
+  .high-contrast * {
+    outline-offset: 2px;
+  }
+
+  .high-contrast *:focus-visible {
+    outline: 2px solid oklch(0.68 0.14 71);
+  }
+
+  /* Scrollbar styling - Premium Gulf SaaS */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: oklch(var(--background));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: oklch(var(--muted));
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(var(--border));
+  }
+
+  .dark {
+    /* Dark mode - Premium Gulf SaaS */
+    --background: 0.12 0.008 261;
+    --foreground: 0.95 0.006 261;
+    --card: 0.16 0.012 261;
+    --card-foreground: 0.95 0.006 261;
+    --popover: 0.18 0.012 261;
+    --popover-foreground: 0.95 0.006 261;
+    --primary: 0.68 0.14 71;
+    --primary-foreground: 0.99 0 0;
+    --secondary: 0.6 0.15 254;
+    --secondary-foreground: 0.99 0 0;
+    --muted: 0.25 0.008 261;
+    --muted-foreground: 0.65 0.01 261;
+    --accent: 0.72 0.12 71;
+    --accent-foreground: 0.99 0 0;
+    --destructive: 0.62 0.22 25;
+    --destructive-foreground: 0.99 0 0;
+    --border: 0.24 0.012 261;
+    --input: 0.2 0.01 261;
+    --ring: 0.6 0.15 254;
+    --chart-1: 0.72 0.12 71;
+    --chart-2: 0.6 0.15 254;
+    --chart-3: 0.75 0.12 160;
+    --chart-4: 0.6 0.15 35;
+    --chart-5: 0.62 0.14 290;
+    --sidebar: 0.14 0.01 261;
+    --sidebar-foreground: 0.95 0.006 261;
+    --sidebar-primary: 0.68 0.14 71;
+    --sidebar-primary-foreground: 0.99 0 0;
+    --sidebar-accent: 0.6 0.15 254;
+    --sidebar-accent-foreground: 0.99 0 0;
+    --sidebar-border: 0.22 0.012 261;
+    --sidebar-ring: 0.6 0.15 254;
+  }
+}

@@ -1,0 +1,174 @@
+// Version: 1.0.0
+type Audit__879637231 =
+  {
+    businessId : Nat;
+    createdAt : Timestamp__1045430586;
+    googleScore : Nat;
+    id : Nat;
+    instagramScore : Nat;
+    leadScore : Nat;
+    userId : Nat;
+    websiteScore : Nat;
+    whatsappScore : Nat
+  };
+type Business__181447704 =
+  {
+    category : Text;
+    city : Text;
+    createdAt : Timestamp__1045430586;
+    description : Text;
+    googleMaps : Text;
+    id : Nat;
+    instagram : Text;
+    name : Text;
+    userId : Nat;
+    whatsapp : Text
+  };
+type Contact__832847505 =
+  {
+    budget : Text;
+    businessName : Text;
+    city : Text;
+    country : Text;
+    createdAt : Timestamp__1045430586;
+    id : Nat;
+    ownerName : Text;
+    service : Text;
+    whatsapp : Text
+  };
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type InvoiceStatus__1060578420 = {#failed; #paid; #pending};
+type Invoice__553749207 =
+  {
+    amount : Nat;
+    createdAt : Timestamp__1045430586;
+    currency : Text;
+    date : Timestamp__1045430586;
+    id : Nat;
+    status : InvoiceStatus__1060578420;
+    subscriptionId : Nat
+  };
+type LeadSource__852860707 = {#google; #instagram; #website; #whatsapp};
+type LeadStatus__564333288 = {#contacted; #converted; #new_};
+type LeadType__920440050 = {#booking; #call; #inquiry};
+type Lead__811335080 =
+  {
+    businessId : Nat;
+    createdAt : Timestamp__1045430586;
+    id : Nat;
+    leadType : LeadType__920440050;
+    source : LeadSource__852860707;
+    var status : LeadStatus__564333288
+  };
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type LegacyPreferences__790941067 =
+  {
+    beginnerMode : Bool;
+    highContrast : Bool;
+    renderMode : Text;
+    shellMode : Bool
+  };
+type LegacyProject__350113217 =
+  {elementCount : Nat; lastModified : Int; name : Text; state : Text};
+type Map__158565046<K, V> = Map__297112838<K, V>;
+type Map__297112838<K, V> =
+  {var root : Node__46230540<K, V>; var size : Nat__490723111};
+type Map__605269027<K, V> = Map__158565046<K, V>;
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type Plan__1033282638 = {#growth; #none; #premium; #starter};
+type SubscriptionStatus__993314501 = {#active; #canceled; #expired};
+type Subscription__276455753 =
+  {
+    createdAt : Timestamp__1045430586;
+    endDate : Timestamp__1045430586;
+    id : Nat;
+    plan : Plan__1033282638;
+    startDate : Timestamp__1045430586;
+    var status : SubscriptionStatus__993314501;
+    stripeSubscriptionId : Text;
+    userId : Nat
+  };
+type Timestamp__1045430586 = Timestamp__301639476;
+type Timestamp__301639476 = Int;
+type UserRole__976968115 = {#admin; #user};
+type User__213430208 =
+  {
+    country : Text;
+    createdAt : Timestamp__1045430586;
+    email : Text;
+    id : Nat;
+    name : Text;
+    phone : Text;
+    var plan : Plan__1033282638;
+    principal : Principal;
+    var role : UserRole__976968115
+  };
+actor {
+  stable audits :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Audit__879637231]];
+      var elementIndex : Nat__490723111
+    };
+  stable businesses :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Business__181447704]];
+      var elementIndex : Nat__490723111
+    };
+  stable contacts :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Contact__832847505]];
+      var elementIndex : Nat__490723111
+    };
+  stable invoices :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Invoice__553749207]];
+      var elementIndex : Nat__490723111
+    };
+  stable leads :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Lead__811335080]];
+      var elementIndex : Nat__490723111
+    };
+  stable var nextAuditId : Nat;
+  stable var nextBusinessId : Nat;
+  stable var nextContactId : Nat;
+  stable var nextInvoiceId : Nat;
+  stable var nextLeadId : Nat;
+  stable var nextSubscriptionId : Nat;
+  stable var nextUserId : Nat;
+  stable subscriptions :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Subscription__276455753]];
+      var elementIndex : Nat__490723111
+    };
+  stable userPreferences :
+    {
+      var root : Node__46230540<Principal, LegacyPreferences__790941067>;
+      var size : Nat__490723111
+    };
+  stable userProjects :
+    {
+      var root :
+        Node__46230540<Principal,
+                        Map__605269027<Text, LegacyProject__350113217>>;
+      var size : Nat__490723111
+    };
+  stable users :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?User__213430208]];
+      var elementIndex : Nat__490723111
+    }
+};

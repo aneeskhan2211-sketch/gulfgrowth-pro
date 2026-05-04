@@ -1,0 +1,25 @@
+{
+  "overview": "GulfGrowth Pro is a premium SaaS platform for Gulf-region digital marketing agencies, helping small businesses in UAE, Oman, Qatar, Saudi Arabia, Bahrain, and Kuwait get more customers through Google ranking, Instagram management, WhatsApp lead funnels, and monthly growth plans.",
+  "features": [
+    "Premium marketing homepage with 9 sections, gold/blue Gulf-focused design",
+    "Instant free business audit tool with mock scoring across 5 categories",
+    "Pricing plans (Starter 299 AED, Growth 699 AED, Premium 1499 AED) with Stripe checkout",
+    "Client dashboard with metrics, lead charts, and ROI estimates",
+    "Admin dashboard for lead management and subscription overview",
+    "Business onboarding multi-step form",
+    "Invoice history tracking",
+    "Internet Identity login with role-based access",
+    "Multi-currency support (AED, OMR, SAR, QAR, KWD, BHD)"
+  ],
+  "category": "saas",
+  "tags": [
+    "saas",
+    "marketing",
+    "gulf",
+    "uae",
+    "dashboard",
+    "stripe",
+    "digital-agency"
+  ],
+  "last_updated": "2026-05-04T07:16:29.373Z"
+}

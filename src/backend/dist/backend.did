@@ -1,0 +1,208 @@
+type UserRole = 
+ variant {
+   admin;
+   user;
+ };
+type UserPublic = 
+ record {
+   country: text;
+   createdAt: Timestamp;
+   email: text;
+   id: nat;
+   name: text;
+   phone: text;
+   plan: Plan;
+   "principal": principal;
+   role: UserRole;
+ };
+type Timestamp = int;
+type SubscriptionStatus = 
+ variant {
+   active;
+   canceled;
+   expired;
+ };
+type SubscriptionPublic = 
+ record {
+   createdAt: Timestamp;
+   endDate: Timestamp;
+   id: nat;
+   plan: Plan;
+   startDate: Timestamp;
+   status: SubscriptionStatus;
+   stripeSubscriptionId: text;
+   userId: nat;
+ };
+type Plan = 
+ variant {
+   growth;
+   none;
+   premium;
+   starter;
+ };
+type LeadType = 
+ variant {
+   booking;
+   call;
+   inquiry;
+ };
+type LeadStatus = 
+ variant {
+   contacted;
+   converted;
+   new;
+ };
+type LeadSource = 
+ variant {
+   google;
+   instagram;
+   website;
+   whatsapp;
+ };
+type LeadPublic = 
+ record {
+   businessId: nat;
+   createdAt: Timestamp;
+   id: nat;
+   leadType: LeadType;
+   source: LeadSource;
+   status: LeadStatus;
+ };
+type InvoiceStatus = 
+ variant {
+   failed;
+   paid;
+   pending;
+ };
+type Invoice = 
+ record {
+   amount: nat;
+   createdAt: Timestamp;
+   currency: text;
+   date: Timestamp;
+   id: nat;
+   status: InvoiceStatus;
+   subscriptionId: nat;
+ };
+type CreateUserInput = 
+ record {
+   country: text;
+   email: text;
+   name: text;
+   phone: text;
+   "principal": principal;
+ };
+type CreateSubscriptionInput = 
+ record {
+   endDate: Timestamp;
+   plan: Plan;
+   startDate: Timestamp;
+   stripeSubscriptionId: text;
+   userId: nat;
+ };
+type CreateLeadInput = 
+ record {
+   businessId: nat;
+   leadType: LeadType;
+   source: LeadSource;
+ };
+type CreateInvoiceInput = 
+ record {
+   amount: nat;
+   currency: text;
+   date: Timestamp;
+   status: InvoiceStatus;
+   subscriptionId: nat;
+ };
+type CreateContactInput = 
+ record {
+   budget: text;
+   businessName: text;
+   city: text;
+   country: text;
+   ownerName: text;
+   "service": text;
+   whatsapp: text;
+ };
+type CreateBusinessInput = 
+ record {
+   category: text;
+   city: text;
+   description: text;
+   googleMaps: text;
+   instagram: text;
+   name: text;
+   userId: nat;
+   whatsapp: text;
+ };
+type CreateAuditInput = 
+ record {
+   businessId: nat;
+   googleScore: nat;
+   instagramScore: nat;
+   leadScore: nat;
+   userId: nat;
+   websiteScore: nat;
+   whatsappScore: nat;
+ };
+type Contact = 
+ record {
+   budget: text;
+   businessName: text;
+   city: text;
+   country: text;
+   createdAt: Timestamp;
+   id: nat;
+   ownerName: text;
+   "service": text;
+   whatsapp: text;
+ };
+type Business = 
+ record {
+   category: text;
+   city: text;
+   createdAt: Timestamp;
+   description: text;
+   googleMaps: text;
+   id: nat;
+   instagram: text;
+   name: text;
+   userId: nat;
+   whatsapp: text;
+ };
+type Audit = 
+ record {
+   businessId: nat;
+   createdAt: Timestamp;
+   googleScore: nat;
+   id: nat;
+   instagramScore: nat;
+   leadScore: nat;
+   userId: nat;
+   websiteScore: nat;
+   whatsappScore: nat;
+ };
+service : {
+  createAudit: (input: CreateAuditInput) -> (Audit);
+  createBusiness: (input: CreateBusinessInput) -> (Business);
+  createContact: (input: CreateContactInput) -> (Contact);
+  createInvoice: (input: CreateInvoiceInput) -> (Invoice);
+  createLead: (input: CreateLeadInput) -> (LeadPublic);
+  createSubscription: (input: CreateSubscriptionInput) ->
+   (SubscriptionPublic);
+  createUser: (input: CreateUserInput) -> (UserPublic);
+  getAuditsByUser: (userId: nat) -> (vec Audit) query;
+  getBusiness: (id: nat) -> (opt Business) query;
+  getBusinessByUser: (userId: nat) -> (opt Business) query;
+  getInvoicesByUser: (userId: nat) -> (vec Invoice) query;
+  getLeadsByBusiness: (businessId: nat) -> (vec LeadPublic) query;
+  getSubscriptionByUser: (userId: nat) -> (opt SubscriptionPublic) query;
+  getUser: (id: nat) -> (opt UserPublic) query;
+  listContacts: () -> (vec Contact) query;
+  listLeads: () -> (vec LeadPublic) query;
+  listUsers: () -> (vec UserPublic) query;
+  updateSubscription: (id: nat, status: SubscriptionStatus) -> (bool);
+  updateUser: (id: nat, name: text, email: text, phone: text, country:
+   text) -> (bool);
+  updateUserRole: (id: nat, role: UserRole) -> (bool);
+}
